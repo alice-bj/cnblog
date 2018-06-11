@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reg</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/reg.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }} <span class="error pull-right"></span>
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <label for="avatar">头像
+                            <img src="/static/img/default.png" alt="" class="avatar">
+                        </label>
+                        <input type="file" id="avatar">
+                    </div>
+
+                    <input type="button" class="btn btn-default login-btn reg-btn pull-right" value="提交">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/reg.js"></script>
+</body>
+</html>

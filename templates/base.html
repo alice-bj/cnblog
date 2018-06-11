@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base</title>
+    {% load my_tags %}
+
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/article_detail.css">
+
+    <link rel="stylesheet" href="/static/theme/{{ blog.theme }}">
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <p class="title">{{ blog.title }}
+            <small><a style="color: white; padding-left: 20px;" href="/index/">首页</a></small>
+
+            <small><a style="color: white; padding-left: 20px;" href="/backend/index">管理</a></small>
+
+        </p>
+
+    </div>
+
+    <div class="container">
+        <div class="col-md-3">
+
+            {% get_menu username %}
+
+        </div>
+
+        <div class="col-md-8">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+
+</body>
+</html>

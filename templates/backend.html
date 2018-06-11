@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>backend</title>
+    <link rel="stylesheet" href="/static/css/backend.css">
+</head>
+<body>
+<div class="region">
+    <div class="header"><a href="/blog/{{ request.user.username }}">{{ request.user.username }}</a>后台管理</div>
+    <a class="add_a" href="/backend/add_article">添加文章</a>
+
+    <div class="content_list">
+        <ol>
+            {% for article in article_list %}
+                <li><a href="/blog/{{ request.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a> &nbsp;&nbsp; &nbsp; {{ article.create_time|date:'Y-m-d' }}</li>
+            {% endfor %}
+
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

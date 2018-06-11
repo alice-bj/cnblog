@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add_article</title>
+</head>
+<body>
+<div class="header">
+
+</div>
+<div class="content">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="title">
+            标题： <input type="text" name="title">
+        </div>
+        <div>
+            内容：<br>
+            <textarea name="article_con" id="article_box" cols="30" rows="10"></textarea>
+        </div>
+        <input type="submit">
+    </form>
+</div>
+
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="/static/kindeditor/lang/zh-CN.js"></script>
+<script src="/static/js/add_article.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+# -*- coding:utf-8 -*-
+
+VALID_IMG_WIDTH = 250
+VALID_IMG_HEIGHT = 35
+
+FONT_SIZE = 32

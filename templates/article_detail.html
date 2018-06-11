@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="text-center">{{ article.title }}</h3>
+    <div class="content">
+        {{ article.articledetail.content|safe }}
+    </div>
+
+    <input type="hidden" id="hid_article_pk" value="{{ article.pk }}">
+    <input type="hidden" id="hid_username" value="{{ request.user.username }}">
+
+    <div id="div_digg">
+        <div class="diggit digg">
+            <span class="diggnum" id="digg_count">{{ article.up_count }}</span>
+        </div>
+        <div class="buryit digg">
+            <span class="burynum" id="bury_count">{{ article.down_count }}</span>
+        </div>
+        <div id="digg_word" class="pull-right"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <hr>
+
+    <p>评论树</p>
+    <div class="comment_tree">
+
+        <script>
+            (function () {
+                $.ajax({
+                    url:'/blog/get_comment_tree/'+$('#hid_article_pk').val(),
+                    success:function (comment_list) {
+
+                        var comment_html = "";
+                        $.each(comment_list,function (index,comment) {
+                            var username = comment.user__username;
+                            var content = comment.content;
+                            var pk = comment.pk;
+                            var pid = comment.parent_comment_id;
+                            var s = '<div class="comment_tree_item" id="'+pk+'"><span>'+username+'</span>&nbsp;&nbsp;<span>'+content+'</span> </div>';
+
+                            if(pid){
+                                $('#'+pid).append(s)
+
+                            }else{
+                                $('.comment_tree').append(s)
+                            }
+                        })
+                    }
+                })
+            })()
+
+        </script>
+
+    </div>
+
+    <hr>
+    <p>评论楼</p>
+    <ul class="list-group comment_list">
+        {% for comment in comment_list %}
+            <li class="list-group-item comment_item">
+                <div>
+                    <a href="">#{{ forloop.counter }}楼</a>
+                    <span>{{ comment.create_time|date:'Y-m-d H:i' }}</span>
+                    <a href="">{{ comment.user.username }}</a>
+                    <a class="pull-right replay" pk="{{ comment.pk }}" username="{{ comment.user.username }}">回复</a>
+                </div>
+                {% if comment.parent_comment_id %}
+                    <div class="parent_comment_info well">
+                        <a href="">@{{ comment.parent_comment.user.username }}</a>
+                        <span>{{ comment.parent_comment.content }}</span>
+                    </div>
+                {% endif %}
+                <div>
+                    <p>{{ comment.content }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <div class="comment_region">
+        <div class="row">
+            <div class="col-md-8">
+                <p>昵称：<input type="text" id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="{{ request.user.username }}"></p>
+                <p>评论内容：</p>
+                <textarea name="" id="comment-text" cols="64" rows="10"></textarea>
+                <button class="btn btn-default pull-right comment-btn">提交</button>
+            </div>
+        </div>
+    </div>
+
+    {% csrf_token %}
+    <script src="/static/js/article_detail.js"></script>
+
+{% endblock content %}

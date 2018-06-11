@@ -1,0 +1,5 @@
+*{padding: 0; margin: 0}
+.header{ width: 100%; height: 50px; background-color: #5ab2ce; padding-left: 15px; line-height: 50px; font-weight: bold;}
+.add_a{ display: block; height: 40px; line-height: 40px; padding-left: 15px;}
+.content_list{ padding-left: 32px;}
+ol li{ border: 1px solid #e3e3e3; height: 30px; line-height: 30px}

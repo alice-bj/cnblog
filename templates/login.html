@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user">用户名</label>
+                        <input type="text" class="form-control" id="user" placeholder="Username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">密码</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">验证码</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="valid_code">
+                            </div>
+
+                            <div class="col-md-6">
+                                <img id="valid_img" width="250" height="35" src="/get_valid_img/" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <input type="button" class="btn btn-default login-btn" value="提交">
+                <span class="error"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/login.js"></script>
+</body>
+</html>
